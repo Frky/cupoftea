@@ -9,8 +9,15 @@ else
     exit 1
 fi
 
-W=799
-H=599
+res=`xrandr |grep \* |awk '{print $1}'`
+if [ $? -eq 0 ] && [ -n $res ]; then
+    W=${res%x*}
+    H=${res#*x}
+else
+    W=799
+    H=599
+fi
+
 x=0
 y=0
 
